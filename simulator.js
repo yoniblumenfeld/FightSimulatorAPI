@@ -23,7 +23,7 @@ let calcFightersWinningPercentages= (fighterARank,fighterBRank) => {
     let weakerFighterPercentage = (100-Math.abs(fighterARank-fighterBRank))/2,
         strongerFighterPercentage = weakerFighterPercentage + Math.abs(fighterARank-fighterBRank);
     
-    return fighterARank>fighterBRank ? {'fighterAPercentage':strongerFighterPercentage,'fighterBPercentage':weakerFighterPercentage} : 
+    return fighterARank > fighterBRank ? {'fighterAPercentage':strongerFighterPercentage,'fighterBPercentage':weakerFighterPercentage} : 
     {'fighterAPercentage':weakerFighterPercentage,'fighterBPercentage':strongerFighterPercentage};
 };
 
@@ -61,7 +61,7 @@ let getFightersObjects = ([fighterA,fighterB]) => {
 let simulateSingleFight = (fighterA,fighterB) => {
         let randomNumber = Math.floor((Math.random()*1000)+1),
         fighterARange = fighterA.winPercentage*10;
-        return {whoWon:randomNumber < fighterARange ? {fighterA} : {fighterB}};
+        return randomNumber < fighterARange ? {fighterA} : {fighterB};
 };
 
 let simulateHundredFights = (fighterA,fighterB) => {
@@ -72,7 +72,7 @@ let simulateHundredFights = (fighterA,fighterB) => {
             new Promise((resolve,reject) => {
                 resolve(simulateSingleFight(fighterA,fighterB));
             }).then((winner)=>{
-                if(winner.whoWon.hasOwnProperty('fighterA')){
+                if(winner.hasOwnProperty('fighterA')){
                     ++fighterA.winningCounter;
                 }else{        
                     ++fighterB.winningCounter;
