@@ -26,6 +26,16 @@ app.post('/simulate/fighters',(req,res)=>{
 });
 
 app.post('/simulate/fighters/fight',(req,res)=>{
+    let [fighterA,fighterB] = req.body;
+    [fighterA,fighterB] = [new simulator.Fighter(fighterA.stats),new simulator.Fighter(fighterB.stats)];
+    fightSimulator = new simulator.FightSimulator(fighterA,fighterB)
+    fightSimulator.simulateHundredFights().then((winner)=>{
+        res.json(winner);
+    })
+});
+
+
+app.post('/simulate/fighters/fight/old',(req,res)=>{
     let {fighterA,fighterB} = simulator.getFightersObjects(req.body);
     simulator.simulateHundredFights(fighterA,fighterB).then((winner)=>{
         res.json(winner);        
