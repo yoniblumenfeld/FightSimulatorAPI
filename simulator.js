@@ -26,6 +26,7 @@ class Fighter{
         this.speed = stats.speed;
         this.strength = stats.strength;
         this.technique = stats.technique;
+        this.totalRank = this.calcFighterTotalRank();
     }
     calcFighterTotalRank(){
         return this.stamina/(100/martialArtPercentage[this.art].stamina)+
@@ -34,7 +35,7 @@ class Fighter{
         this.technique/(100/martialArtPercentage[this.art].technique);
    }
    calcWinningPercentageVsFighter(opponentRank){
-       let selfRank = this.calcFighterTotalRank(),
+       let selfRank = this.totalRank,
        weakerFighterPercentage = (100-Math.abs(selfRank-opponentRank))/2,
        strongerFighterPercentage = weakerFighterPercentage + Math.abs(selfRank-opponentRank);
        return (selfRank > opponentRank 
@@ -72,8 +73,8 @@ class FightSimulator{
                     }
                 });
             }
-            resolve([this.firstFighterClass,this.secondFighterClass]);
-        }).then((fightersArr)=>{
+            resolve();
+        }).then(()=>{
             console.log('Fighter A winnings: ',this.firstFighterClass.winningCounter,'\n Fighter B winnings: ',this.secondFighterClass.winningCounter);
             return this.firstFighterClass.winningCounter > this.secondFighterClass.winningCounter ? this.firstFighterClass : this.secondFighterClass;
         });
