@@ -27,8 +27,6 @@ app.post('/simulate/fighters',(req,res)=>{
 
 app.post('/simulate/fighters/fight',(req,res)=>{
     let {fighterA,fighterB} = simulator.getFightersObjects(req.body);
-    console.log('Fighter A OBJECT: ',fighterA);
-    console.log('Fighter B Object: ',fighterB);
     simulator.simulateHundredFights(fighterA,fighterB).then((winner)=>{
         res.json(winner);        
     });
