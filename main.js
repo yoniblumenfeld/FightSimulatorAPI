@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const yargs = require('yargs');
 const simulator = require('./simulator');
-let app = express();
 const argv = yargs
 .option('p',{
     alias: 'port',
@@ -13,8 +12,10 @@ const argv = yargs
 })
 .help()
 .argv;
-
 const port = argv.port;
+
+let app = express();
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.json());
 
