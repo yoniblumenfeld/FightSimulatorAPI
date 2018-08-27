@@ -1,0 +1,4 @@
+ JSON.strinigify([{stats:{art:'Muay Thai',technique:70,strength:60,speed:40,stamina:58}},{stats:{art:'Karate',technique:50,strength:35,speed:60,stamina:70}}])
+
+
+'[{"stats":{"art":"Muay Thai","technique":70,"strength":60,"speed":40,"stamina":58}},{"stats":{"art":"Karate","technique":50,"strength":35,"speed":60,"stamina":70}}]'
