@@ -61,7 +61,7 @@ let getFightersObjects = ([fighterA,fighterB]) => {
 let simulateSingleFight = (fighterA,fighterB) => {
         let randomNumber = Math.floor((Math.random()*1000)+1),
         fighterARange = fighterA.winPercentage*10;
-        return randomNumber < fighterARange ? {fighterA} : {fighterB};
+        return randomNumber <= fighterARange ? {fighterA} : {fighterB};
 };
 
 let simulateHundredFights = (fighterA,fighterB) => {
